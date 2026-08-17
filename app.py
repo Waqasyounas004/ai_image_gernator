@@ -60,15 +60,27 @@ st.markdown(
         outline: none !important;
     }
 
-    /* Remove outline boxes, borders, and frames from all header buttons & toolbar icons */
+    /* Completely remove/hide GitHub link & extra action buttons between Share and 3-dots menu */
+    div[data-testid="stActionButton"],
+    header[data-testid="stHeader"] a[href*="github.com"],
+    header[data-testid="stHeader"] button[title*="GitHub"],
+    header[data-testid="stHeader"] a[title*="GitHub"] {
+        display: none !important;
+        width: 0px !important;
+        height: 0px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+
+    /* Remove outline boxes, borders, and backgrounds from Share button & 3-dots menu */
     header[data-testid="stHeader"] button,
     header[data-testid="stHeader"] [role="button"],
     div[data-testid="stToolbar"] button,
     div[data-testid="stToolbar"] [role="button"],
-    div[data-testid="stHeaderIconButton"],
+    div[data-testid="stMainMenu"],
     div[data-testid="stMainMenu"] button,
-    div[data-testid="stAppDeployButton"] button,
-    div[data-testid="stActionButton"] button {
+    div[data-testid="stAppDeployButton"],
+    div[data-testid="stAppDeployButton"] button {
         background: transparent !important;
         background-color: transparent !important;
         border: none !important;
@@ -80,8 +92,6 @@ st.markdown(
     header[data-testid="stHeader"] button:focus,
     header[data-testid="stHeader"] button:active,
     header[data-testid="stHeader"] button:hover,
-    div[data-testid="stToolbar"] button:focus,
-    div[data-testid="stToolbar"] button:active,
     div[data-testid="stToolbar"] button:hover {
         background: rgba(255, 255, 255, 0.05) !important;
         border: none !important;
@@ -90,41 +100,34 @@ st.markdown(
         box-shadow: none !important;
     }
 
-    /* Make all SVG icons, paths, circles, polygons, lines, and shapes in Header pure white and fully visible */
-    header[data-testid="stHeader"] svg,
-    header[data-testid="stHeader"] svg *,
-    div[data-testid="stStatusWidget"] svg,
-    div[data-testid="stStatusWidget"] svg *,
-    div[data-testid="stToolbar"] svg,
-    div[data-testid="stToolbar"] svg *,
-    div[data-testid="stAppDeployButton"] svg,
-    div[data-testid="stAppDeployButton"] svg *,
-    .stStatusWidget svg,
-    .stStatusWidget svg * {
+    /* 3-dots Menu Icon & Header SVG paths - pure white lines/dots with transparent rect canvas */
+    header[data-testid="stHeader"] svg {
+        fill: none !important;
         color: #FFFFFF !important;
-        stroke: #FFFFFF !important;
-        fill: #FFFFFF !important;
-        opacity: 1 !important;
+        background: transparent !important;
     }
 
-    /* Prevent SVG canvas rectangles from turning into solid white or border boxes */
-    header[data-testid="stHeader"] svg rect,
-    div[data-testid="stStatusWidget"] svg rect,
-    div[data-testid="stToolbar"] svg rect,
-    div[data-testid="stAppDeployButton"] svg rect,
-    .stStatusWidget svg rect {
+    header[data-testid="stHeader"] svg rect {
         fill: transparent !important;
         stroke: transparent !important;
         border: none !important;
+    }
+
+    header[data-testid="stHeader"] svg path,
+    header[data-testid="stHeader"] svg circle,
+    header[data-testid="stHeader"] svg dot,
+    div[data-testid="stMainMenu"] svg path,
+    div[data-testid="stMainMenu"] svg circle {
+        stroke: #FFFFFF !important;
+        fill: #FFFFFF !important;
+        opacity: 1 !important;
     }
 
     header[data-testid="stHeader"] button,
     header[data-testid="stHeader"] span,
     header[data-testid="stHeader"] label,
     header[data-testid="stHeader"] p,
-    header[data-testid="stHeader"] a,
-    div[data-testid="stStatusWidget"] span,
-    div[data-testid="stStatusWidget"] label {
+    header[data-testid="stHeader"] a {
         color: #FFFFFF !important;
         opacity: 1 !important;
     }
