@@ -113,6 +113,8 @@ st.markdown(
     header[data-testid="stHeader"] svg rect,
     div[data-testid="stMainMenu"] svg rect,
     div[data-testid="stToolbar"] svg rect,
+    div[data-testid="stStatusWidget"] svg rect,
+    div[data-testid="stAppDeployButton"] svg rect,
     .stApp header svg rect {
         display: none !important;
         fill: transparent !important;
@@ -120,7 +122,7 @@ st.markdown(
         border: none !important;
     }
 
-    /* 5. Render 3 vertical dots icon & Share text in pure crisp white (#FFFFFF) */
+    /* 5. Clean line outline for all Header SVG icons (Deploy icon, Share icon, toolbar icons) */
     header[data-testid="stHeader"] svg {
         fill: none !important;
         color: #FFFFFF !important;
@@ -128,14 +130,23 @@ st.markdown(
     }
 
     header[data-testid="stHeader"] svg path,
-    header[data-testid="stHeader"] svg circle,
+    header[data-testid="stHeader"] svg line,
+    header[data-testid="stHeader"] svg polyline,
+    header[data-testid="stHeader"] svg polygon,
+    div[data-testid="stStatusWidget"] svg path,
+    div[data-testid="stAppDeployButton"] svg path {
+        stroke: #FFFFFF !important;
+        fill: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 6. Pure White 3-Dots Vertical Menu Icon */
     div[data-testid="stMainMenu"] svg path,
     div[data-testid="stMainMenu"] svg circle,
     div[data-testid="stMainMenu"] svg g {
         stroke: #FFFFFF !important;
         fill: #FFFFFF !important;
         opacity: 1 !important;
-        visibility: visible !important;
     }
 
     header[data-testid="stHeader"] button,
