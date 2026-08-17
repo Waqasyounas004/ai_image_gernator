@@ -60,23 +60,32 @@ st.markdown(
         outline: none !important;
     }
 
-    /* Completely remove/hide GitHub link & extra action buttons between Share and 3-dots menu */
+    /* 1. Completely hide and remove the GitHub button and space between Share & 3-dots menu */
     div[data-testid="stActionButton"],
-    header[data-testid="stHeader"] a[href*="github.com"],
+    header[data-testid="stHeader"] a[href*="github"],
     header[data-testid="stHeader"] button[title*="GitHub"],
-    header[data-testid="stHeader"] a[title*="GitHub"] {
+    header[data-testid="stHeader"] a[title*="GitHub"],
+    header[data-testid="stHeader"] [title*="Source"],
+    header[data-testid="stHeader"] [title*="repository"] {
         display: none !important;
         width: 0px !important;
         height: 0px !important;
         margin: 0px !important;
         padding: 0px !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
     }
 
-    /* Remove outline boxes, borders, and backgrounds from Share button & 3-dots menu */
+    /* 2. Tighten toolbar gap between Share button and 3-dots menu */
+    div[data-testid="stToolbar"] {
+        gap: 0.4rem !important;
+        background: transparent !important;
+    }
+
+    /* 3. Remove background boxes, borders, and shadows from all header buttons & 3-dots container */
     header[data-testid="stHeader"] button,
     header[data-testid="stHeader"] [role="button"],
     div[data-testid="stToolbar"] button,
-    div[data-testid="stToolbar"] [role="button"],
     div[data-testid="stMainMenu"],
     div[data-testid="stMainMenu"] button,
     div[data-testid="stAppDeployButton"],
@@ -93,34 +102,40 @@ st.markdown(
     header[data-testid="stHeader"] button:active,
     header[data-testid="stHeader"] button:hover,
     div[data-testid="stToolbar"] button:hover {
-        background: rgba(255, 255, 255, 0.05) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
         border: none !important;
         border-color: transparent !important;
         outline: none !important;
         box-shadow: none !important;
     }
 
-    /* 3-dots Menu Icon & Header SVG paths - pure white lines/dots with transparent rect canvas */
+    /* 4. Hide all SVG canvas <rect> background boxes to eliminate solid white square boxes */
+    header[data-testid="stHeader"] svg rect,
+    div[data-testid="stMainMenu"] svg rect,
+    div[data-testid="stToolbar"] svg rect,
+    .stApp header svg rect {
+        display: none !important;
+        fill: transparent !important;
+        stroke: transparent !important;
+        border: none !important;
+    }
+
+    /* 5. Render 3 vertical dots icon & Share text in pure crisp white (#FFFFFF) */
     header[data-testid="stHeader"] svg {
         fill: none !important;
         color: #FFFFFF !important;
         background: transparent !important;
     }
 
-    header[data-testid="stHeader"] svg rect {
-        fill: transparent !important;
-        stroke: transparent !important;
-        border: none !important;
-    }
-
     header[data-testid="stHeader"] svg path,
     header[data-testid="stHeader"] svg circle,
-    header[data-testid="stHeader"] svg dot,
     div[data-testid="stMainMenu"] svg path,
-    div[data-testid="stMainMenu"] svg circle {
+    div[data-testid="stMainMenu"] svg circle,
+    div[data-testid="stMainMenu"] svg g {
         stroke: #FFFFFF !important;
         fill: #FFFFFF !important;
         opacity: 1 !important;
+        visibility: visible !important;
     }
 
     header[data-testid="stHeader"] button,
