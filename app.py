@@ -60,7 +60,7 @@ st.markdown(
         outline: none !important;
     }
 
-    /* 1. Completely hide and remove the GitHub button and space between Share & 3-dots menu */
+    /* 1. Completely hide GitHub button/link between Deploy/Share and 3-dots menu */
     div[data-testid="stActionButton"],
     header[data-testid="stHeader"] a[href*="github"],
     header[data-testid="stHeader"] button[title*="GitHub"],
@@ -76,20 +76,36 @@ st.markdown(
         opacity: 0 !important;
     }
 
-    /* 2. Tighten toolbar gap between Share button and 3-dots menu */
+    /* 2. On Streamlit Cloud, match Localhost by changing "Share" button text to "Deploy" */
+    div[data-testid="stShareButton"] button span,
+    div[data-testid="stShareButton"] span {
+        font-size: 0px !important;
+        display: inline-block !important;
+    }
+
+    div[data-testid="stShareButton"] button span::after,
+    div[data-testid="stShareButton"] span::after {
+        content: "Deploy" !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #FFFFFF !important;
+    }
+
+    /* 3. Match exact toolbar spacing between Deploy button and 3-dots menu */
     div[data-testid="stToolbar"] {
-        gap: 0.4rem !important;
+        gap: 0.6rem !important;
+        margin-right: 0.5rem !important;
+        align-items: center !important;
         background: transparent !important;
     }
 
-    /* 3. Remove background boxes, borders, and shadows from all header buttons & 3-dots container */
+    /* 4. Remove default backgrounds & shadows from all header buttons */
     header[data-testid="stHeader"] button,
     header[data-testid="stHeader"] [role="button"],
     div[data-testid="stToolbar"] button,
-    div[data-testid="stMainMenu"],
-    div[data-testid="stMainMenu"] button,
     div[data-testid="stAppDeployButton"],
-    div[data-testid="stAppDeployButton"] button {
+    div[data-testid="stAppDeployButton"] button,
+    div[data-testid="stShareButton"] button {
         background: transparent !important;
         background-color: transparent !important;
         border: none !important;
@@ -98,18 +114,22 @@ st.markdown(
         box-shadow: none !important;
     }
 
-    header[data-testid="stHeader"] button:focus,
-    header[data-testid="stHeader"] button:active,
+    /* 5. Sleek bordered box around 3-dots vertical menu icon [ ⋮ ] matching Localhost */
+    div[data-testid="stMainMenu"],
+    div[data-testid="stMainMenu"] button {
+        background: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-radius: 4px !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
     header[data-testid="stHeader"] button:hover,
     div[data-testid="stToolbar"] button:hover {
         background: rgba(255, 255, 255, 0.08) !important;
-        border: none !important;
-        border-color: transparent !important;
-        outline: none !important;
-        box-shadow: none !important;
     }
 
-    /* 4. Hide all SVG canvas <rect> background boxes to eliminate solid white square boxes */
+    /* 6. Hide all SVG canvas <rect> background boxes to eliminate solid white square boxes */
     header[data-testid="stHeader"] svg rect,
     div[data-testid="stMainMenu"] svg rect,
     div[data-testid="stToolbar"] svg rect,
@@ -122,7 +142,7 @@ st.markdown(
         border: none !important;
     }
 
-    /* 5. Clean line outline for all Header SVG icons (Deploy icon, Share icon, toolbar icons) */
+    /* 7. Pure White 3-Dots Vertical Menu Icon [ ⋮ ] */
     header[data-testid="stHeader"] svg {
         fill: none !important;
         color: #FFFFFF !important;
@@ -131,8 +151,6 @@ st.markdown(
 
     header[data-testid="stHeader"] svg path,
     header[data-testid="stHeader"] svg line,
-    header[data-testid="stHeader"] svg polyline,
-    header[data-testid="stHeader"] svg polygon,
     div[data-testid="stStatusWidget"] svg path,
     div[data-testid="stAppDeployButton"] svg path {
         stroke: #FFFFFF !important;
@@ -140,7 +158,6 @@ st.markdown(
         opacity: 1 !important;
     }
 
-    /* 6. Pure White 3-Dots Vertical Menu Icon */
     div[data-testid="stMainMenu"] svg path,
     div[data-testid="stMainMenu"] svg circle,
     div[data-testid="stMainMenu"] svg g {
