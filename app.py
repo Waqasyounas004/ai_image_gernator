@@ -57,16 +57,48 @@ st.markdown(
         background: transparent !important;
         box-shadow: none !important;
         border: none !important;
+        outline: none !important;
     }
 
-    /* Prevent SVG canvas rectangles from turning into solid white boxes */
+    /* Remove outline boxes, borders, and frames from all header buttons & toolbar icons */
+    header[data-testid="stHeader"] button,
+    header[data-testid="stHeader"] [role="button"],
+    div[data-testid="stToolbar"] button,
+    div[data-testid="stToolbar"] [role="button"],
+    div[data-testid="stHeaderIconButton"],
+    div[data-testid="stMainMenu"] button,
+    div[data-testid="stAppDeployButton"] button,
+    div[data-testid="stActionButton"] button {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        border-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    header[data-testid="stHeader"] button:focus,
+    header[data-testid="stHeader"] button:active,
+    header[data-testid="stHeader"] button:hover,
+    div[data-testid="stToolbar"] button:focus,
+    div[data-testid="stToolbar"] button:active,
+    div[data-testid="stToolbar"] button:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: none !important;
+        border-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Prevent SVG canvas rectangles from turning into outline or solid boxes */
     header[data-testid="stHeader"] svg rect,
     div[data-testid="stStatusWidget"] svg rect,
     div[data-testid="stToolbar"] svg rect,
     div[data-testid="stAppDeployButton"] svg rect,
     .stStatusWidget svg rect {
         fill: transparent !important;
-        stroke: none !important;
+        stroke: transparent !important;
+        border: none !important;
     }
 
     /* SVG Icon outline and fill styling for Header & Status Widget */
