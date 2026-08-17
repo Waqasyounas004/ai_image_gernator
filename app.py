@@ -90,7 +90,24 @@ st.markdown(
         box-shadow: none !important;
     }
 
-    /* Prevent SVG canvas rectangles from turning into outline or solid boxes */
+    /* Make all SVG icons, paths, circles, polygons, lines, and shapes in Header pure white and fully visible */
+    header[data-testid="stHeader"] svg,
+    header[data-testid="stHeader"] svg *,
+    div[data-testid="stStatusWidget"] svg,
+    div[data-testid="stStatusWidget"] svg *,
+    div[data-testid="stToolbar"] svg,
+    div[data-testid="stToolbar"] svg *,
+    div[data-testid="stAppDeployButton"] svg,
+    div[data-testid="stAppDeployButton"] svg *,
+    .stStatusWidget svg,
+    .stStatusWidget svg * {
+        color: #FFFFFF !important;
+        stroke: #FFFFFF !important;
+        fill: #FFFFFF !important;
+        opacity: 1 !important;
+    }
+
+    /* Prevent SVG canvas rectangles from turning into solid white or border boxes */
     header[data-testid="stHeader"] svg rect,
     div[data-testid="stStatusWidget"] svg rect,
     div[data-testid="stToolbar"] svg rect,
@@ -101,35 +118,15 @@ st.markdown(
         border: none !important;
     }
 
-    /* SVG Icon outline and fill styling for Header & Status Widget */
-    header[data-testid="stHeader"] svg,
-    div[data-testid="stStatusWidget"] svg,
-    div[data-testid="stToolbar"] svg,
-    div[data-testid="stAppDeployButton"] svg,
-    .stStatusWidget svg {
-        fill: none !important;
-        color: #FFFFFF !important;
-    }
-
-    header[data-testid="stHeader"] svg path,
-    header[data-testid="stHeader"] svg circle,
-    div[data-testid="stStatusWidget"] svg path,
-    div[data-testid="stStatusWidget"] svg circle,
-    div[data-testid="stToolbar"] svg path,
-    div[data-testid="stAppDeployButton"] svg path,
-    .stStatusWidget svg path,
-    .stStatusWidget svg circle {
-        stroke: #FFFFFF !important;
-        fill: none !important;
-    }
-
     header[data-testid="stHeader"] button,
     header[data-testid="stHeader"] span,
     header[data-testid="stHeader"] label,
     header[data-testid="stHeader"] p,
+    header[data-testid="stHeader"] a,
     div[data-testid="stStatusWidget"] span,
     div[data-testid="stStatusWidget"] label {
         color: #FFFFFF !important;
+        opacity: 1 !important;
     }
 
     /* Container Bounds */
