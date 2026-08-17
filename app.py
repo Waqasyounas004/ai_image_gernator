@@ -32,6 +32,74 @@ st.markdown(
         font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     }
 
+    /* Hide top Streamlit colored decoration bar if present */
+    div[data-testid="stDecoration"] {
+        display: none !important;
+        height: 0px !important;
+    }
+
+    /* Top Streamlit Header Bar */
+    header[data-testid="stHeader"] {
+        background-color: rgba(11, 15, 25, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid #2A3348 !important;
+    }
+
+    /* Target all header containers, toolbar & status widgets to ensure transparent backgrounds */
+    header[data-testid="stHeader"] *,
+    div[data-testid="stStatusWidget"],
+    div[data-testid="stStatusWidget"] *,
+    div[data-testid="stToolbar"],
+    div[data-testid="stToolbar"] *,
+    div[data-testid="stAppDeployButton"],
+    div[data-testid="stAppDeployButton"] * {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    /* Prevent SVG canvas rectangles from turning into solid white boxes */
+    header[data-testid="stHeader"] svg rect,
+    div[data-testid="stStatusWidget"] svg rect,
+    div[data-testid="stToolbar"] svg rect,
+    div[data-testid="stAppDeployButton"] svg rect,
+    .stStatusWidget svg rect {
+        fill: transparent !important;
+        stroke: none !important;
+    }
+
+    /* SVG Icon outline and fill styling for Header & Status Widget */
+    header[data-testid="stHeader"] svg,
+    div[data-testid="stStatusWidget"] svg,
+    div[data-testid="stToolbar"] svg,
+    div[data-testid="stAppDeployButton"] svg,
+    .stStatusWidget svg {
+        fill: none !important;
+        color: #FFFFFF !important;
+    }
+
+    header[data-testid="stHeader"] svg path,
+    header[data-testid="stHeader"] svg circle,
+    div[data-testid="stStatusWidget"] svg path,
+    div[data-testid="stStatusWidget"] svg circle,
+    div[data-testid="stToolbar"] svg path,
+    div[data-testid="stAppDeployButton"] svg path,
+    .stStatusWidget svg path,
+    .stStatusWidget svg circle {
+        stroke: #FFFFFF !important;
+        fill: none !important;
+    }
+
+    header[data-testid="stHeader"] button,
+    header[data-testid="stHeader"] span,
+    header[data-testid="stHeader"] label,
+    header[data-testid="stHeader"] p,
+    div[data-testid="stStatusWidget"] span,
+    div[data-testid="stStatusWidget"] label {
+        color: #FFFFFF !important;
+    }
+
     /* Container Bounds */
     .block-container {
         padding-top: 2rem;
@@ -84,7 +152,7 @@ st.markdown(
         color: #64748B !important;
     }
 
-    /* Primary Action Button (No Icon) */
+    /* Primary Action Button */
     div.stButton > button {
         width: 100%;
         background-color: #4F46E5;
@@ -106,12 +174,19 @@ st.markdown(
         transform: translateY(-2px);
     }
 
-    /* Inline Spinner (NO BOX / NO WHITE RECTANGLES) - Pure White Stroke for Loading Cycle Only */
-    div[data-testid="stSpinner"] {
+    /* Inline Spinner (NO BOX / NO WHITE RECTANGLES) */
+    div[data-testid="stSpinner"],
+    div[data-testid="stSpinner"] *,
+    div[data-testid="stSpinner"] > div,
+    div[data-testid="stSpinner"] [data-testid="stAlert"],
+    div[data-testid="stSpinner"] [data-baseweb="notification"] {
         background-color: transparent !important;
-        background: none !important;
+        background: transparent !important;
         border: none !important;
         box-shadow: none !important;
+    }
+
+    div[data-testid="stSpinner"] {
         padding: 0.8rem 0 !important;
         margin-top: 1rem !important;
         margin-bottom: 1rem !important;
@@ -127,6 +202,13 @@ st.markdown(
 
     div[data-testid="stSpinner"] svg {
         stroke: #FFFFFF !important;
+        fill: none !important;
+        background: transparent !important;
+    }
+
+    div[data-testid="stSpinner"] svg rect {
+        fill: transparent !important;
+        stroke: none !important;
     }
 
     div[data-testid="stSpinner"] svg path,
@@ -232,8 +314,5 @@ if generate_btn:
 
             st.success(f"Image generated and saved to `{saved_path}`")
 
-        except Exception:
-            st.error(
-                "Something went wrong while generating your image. "
-                "Please check your API keys and try again."
-            )
+        except Exception as e:
+            st.error(f"Something went wrong while generating your image: {e}")
