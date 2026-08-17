@@ -19,7 +19,18 @@ def generate_image(enhanced_prompt: str, model: str = "black-forest-labs/FLUX.1-
     hf_token = os.getenv("HF_TOKEN")
 
     if not hf_token:
-        raise ValueError("HF_TOKEN is not set in the .env file.")
+        try:
+            import streamlit as st
+            if hasattr(st, "secrets") and "HF_TOKEN" in st.secrets:
+                hf_token = st.secrets["HF_TOKEN"]
+        except Exception:
+            pass
+
+    if not hf_token:
+        raise ValueError(
+            "HF_TOKEN is not set. Please add HF_TOKEN to your Streamlit App Secrets "
+            "(App Settings -> Secrets) or set it in your local .env file."
+        )
 
     client = InferenceClient(
         provider="auto",
